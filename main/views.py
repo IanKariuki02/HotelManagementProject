@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from django.views.generic import CreateView, UpdateView, ListView
 from django.urls import reverse_lazy
@@ -117,3 +117,15 @@ class ReservationListView(LoginRequiredMixin, ListView):
             return Reservation.objects.filter(room__room_number=int(room_number)).order_by('-id')
         else:
             return Reservation.objects.all().order_by('-id')
+
+
+from django.shortcuts import redirect
+
+
+def delete_reservation(request, reservation_id):
+    # Delete the reservation from the database
+    reservation = Reservation.objects.get(id=reservation_id)
+    reservation.delete()
+
+    # Redirect to the reservation list page
+    return redirect('reservation_list')

@@ -11,4 +11,6 @@
   <p>Check-out Date: {{ reservation.check_out_date }}</p>
   <p>Additional Details : {{ reservation.additional|linebreaks }}</p>
   <a class="linkx" href="{% url 'reservation_update' reservation.id %}">Update</a>
+      <a class="linkx" href="{% url 'delete-reservation' reservation.id %}">Delete</a>
+
   {% endblock %}
